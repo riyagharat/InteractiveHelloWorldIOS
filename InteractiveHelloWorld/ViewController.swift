@@ -8,8 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet var inTextField:UITextField!
+    @IBOutlet var outTextLabel:UILabel!
+    
+    
+    @IBAction func buttonTouch(Sender: AnyObject){
+        if let inText = inTextField.text {
+            outTextLabel.text = "Hello \(inText)"
+            print(inText)
+        }else{
+            outTextLabel.text = "????"
+        }
+        inTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
